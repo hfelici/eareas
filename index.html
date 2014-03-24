@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="eareas.css" />
+<link rel="stylesheet" type="text/css" href="vendor/nprogress.css" />
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+<style>
+  body { margin:2em; }
+  p { vertical-align:middle; }
+  .earea:focus { background-color:white; }
+  input[type=text] { height:auto; width:30em; color:gray; display:block; }
+  
+  div.progressbar {display:none;height:3px;background:#C4C4C4;padding:0px;}
+  div.progressbar .scrollbar{display:block;width:50%;height:3px;background:red;}
+</style>
+</head>
+<body>
+
+
+
+<div class="jumbotron">
+  <h1><i class="fa fa-fire-extinguisher"></i> eArea</h1>
+  <p class="marketing-byline">Simple ultralightweight unobtrusive bootstrap fontAwesome HTML5 WYSIWYG editor</p>
+</div>
+<div>  
+   <p> h@coolbleiben.coop 2014. Derived from
+      <a href="http://getbootstrap.com/2.3.2/javascript.html#typeahead">Boostrap typeahead</a>,
+      <a href="http://mindmup.github.io/bootstrap-wysiwyg/">Bootstrap-wysiwyg</a>,
+      <a href="http://hackerwins.github.io/summernote/">Summernote</a> and 
+      <a href="http://dwij.co.in/text-editor-with-ajax-image-uploader/">WysiwygImageUpload</a>
+   </p>
+   <p> Format toolbox will appear at the bottom edge of the page, there is only one for all eAreas<br />
+       eArea will initialize only when focused one of the areas, so you can put many eAreas without hogging your browser<br />
+       eAreas will copy its content to the previous hidden input
+   </p>
+</div>
+<div>
+   
+
+   <input type="hidden" value="<big><big><b>area1</b></big></big>" >
+   <div contenteditable="true" class='earea' id="1" data-directory="uploads">
+      <big><big><b>area1</b></big></big>
+   </div>
+
+
+
+   <input type="hidden" value="<big style='color:red;'><i>area2</i></big>" >
+     <div contenteditable="true" class='earea' id="2" data-directory="uploads">
+      <big style='color:red'><b>area2</b></big>
+   </div>
+
+</div>
+
+<div class="eareatoolbar" style="display:none;">
+   <div class="btn-group dropup">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+      <ul class="dropdown-menu"  style="margin-bottom:16px;">
+         <li><a data-edit="fontSize 9">xxLarge</a></li>
+         <li><a data-edit="fontSize 7">xLarge</a></li>
+         <li><a data-edit="fontSize 5">Large</a></li>
+         <li><a data-edit="fontSize 3">Normal</a></li>
+         <li><a data-edit="fontSize 1">Small</a></li>
+      </ul>
+   </div>
+   <!---
+   <a href="#"  data-edit="increaseFontSize" title="Increase Font">A</a>
+   <a href="#"  data-edit="decreaseFontSize" title="Decrease Font"><small>A</small></a>
+   --->
+   <a href="#"  data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold" > </i></a>
+   <a href="#"  data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+   <a href="#"  data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+   <a href="#"  data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+   <span class="eareatoolbarSeparator" ></span>
+   <a href="#"  data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+   <a href="#"  data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+   <a href="#"  data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+   <a href="#"  data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+   <span class="eareatoolbarSeparator" ></span>
+   <a href="#"  data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+   <a href="#"  data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+   <a href="#"  data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+   <a href="#"  data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+   <span class="eareatoolbarSeparator" ></span>
+   <a href="#" data-edit="insertHTML <table class='table table-bordered'><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>" href="#" ><i class="fa fa-table"></i></a>
+
+      <div class="btn-group">
+        <a class="btn" title="Insertar Imagen" ><i class="fa fa-picture-o"></i></a>
+        <input type="file" data-edit="insertImage" style="opacity: 0; position: absolute; top: 0px; left: 0px; width: 36px; height: 30px;">
+      </div>
+
+   <a href="#"  data-edit="createLink" title="Enlace"><i class="fa fa-link"></i></a>
+   <a href="#"  data-edit="unlink" title="Quitar Enlace"><i class="fa fa-unlink"></i></a>
+   <span class="eareatoolbarSeparator" ></span>
+
+   <div class="btn-group dropup">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="color">Color</a>
+      <ul class="dropdown-menu"  style="margin-bottom:16px;">
+         <li><a data-edit="foreColor white"   style="background-color:white;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor gray"    style="background-color:gray;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #f1c40f" style="background-color:#f1c40f;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #e67e22" style="background-color:#e67e22;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #DC143C" style="background-color:#DC143C;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #8e44ad" style="background-color:#8e44ad;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #2980b9" style="background-color:#2980b9;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor #27ae60" style="background-color:#27ae60;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="foreColor black" style="background-color:black;">&nbsp;&nbsp;</a></li>
+      </ul>
+   </div>
+
+   <div class="btn-group dropup">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="color">Fondo</a>
+      <ul class="dropdown-menu"  style="margin-bottom:16px;">
+         <li><a data-edit="backColor white" style="background-color:white;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor gray" style="background-color:gray;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #f1c40f" style="background-color:#f1c40f;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #e67e22" style="background-color:#e67e22;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #DC143C" style="background-color:#DC143C;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #8e44ad" style="background-color:#8e44ad;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #2980b9" style="background-color:#2980b9;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor #27ae60" style="background-color:#27ae60;">&nbsp;&nbsp;</a></li>
+         <li><a data-edit="backColor black" style="background-color:black;">&nbsp;&nbsp;</a></li>
+      </ul>
+   </div>
+
+   <span class="eareatoolbarSeparator" ></span>
+   
+   <a href="#" data-edit="fullscreen" href="#" ><i class="fa fa-arrows-alt"></i></a>
+   <a href="#" data-edit="html" href="#" ><i class="fa fa-code"></i></a>
+   <!---
+       <a href="#"  data-edit="italic" title="Italic (Ctrl/Cmd+I)" onclick="$('.earea').get(0).innerHTML=$('.earea').get(0).textContent;" ><i class="fa fa-italic"></i></a>
+       <a href="#"  data-edit="italic" title="Italic (Ctrl/Cmd+I)" onclick="$('.earea').get(0).textContent=$('.earea').get(0).innerHTML;" ><i class="fa fa-italic"></i></a>
+       --->
+   <span class="eareatoolbarSeparator" ></span>
+   <a href="#"  data-edit="removeformat" href="#" title="Quitar el formato")><i class="fa fa-times"></i></a>
+
+
+</div>
+
+
+<hr>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" ></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" ></script>
+<script src="eareas.js" ></script>
+<script src="vendor/nprogress.js" ></script>
+</body>
+</html>
